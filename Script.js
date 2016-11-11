@@ -76,7 +76,7 @@ function begincard() {
             }
         }
 
-        $("#tableHeader").append('<th>' + hole.hole_num + '<br> Par: ' + tees.par + '<br> Yards: ' + tees.yards + '</tr>');
+        $("#tableHeader").append('<th>' + hole.hole_num + '<br> Par: ' + tees.par + '<br> Yards: ' + tees.yards +' <br> HCP: ' + tees.hcp + '</tr>');
         totPar += parseInt(tees.par);
         totYards += parseInt(tees.yards);
     }
