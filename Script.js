@@ -8,6 +8,7 @@ var front = [];
 var totPar = 0, totYards = 0;
 var tees;
 
+
 $(document).ready(function () {
     $.post("https://golf-courses-api.herokuapp.com/courses", myLocation, function (data, status) {
         closeCourses = JSON.parse(data);
@@ -39,6 +40,8 @@ function loadCourse(theid) {
 
         }
 
+        weather(selectedCourse.zip_code);
+
     });
 
 
@@ -53,6 +56,7 @@ function begincard() {
     $("#cardLeft").html("");
 
     console.log(selectedCourse);
+
 
 
     //initialize weather data
@@ -154,7 +158,7 @@ function calculateTotals() {
                 $("#status" + (p + 1)).html("Bad");
             }
             else if(totalScore <= totPar){
-                $("#staus" + (p + 1)).html("Good");
+                $("#status" + (p + 1)).html("Good");
             }
 
         }
@@ -162,4 +166,24 @@ function calculateTotals() {
 
     // }
 }
+
+
+function weather (zip_code) {
+    $.simpleWeather({
+        location: zip_code,
+        woeid: '',
+        unit: 'f',
+        success: function (weather) {
+            html = '<h1 style="font-size: 200px;"><i class="icon-' + weather.code + '"></i> ' + weather.temp + '&deg;' + weather.units.temp + '</h1>';
+            html += '<ul><li>' + weather.city + ', ' + weather.region + '</li>';
+            html += '<li class="currently">' + weather.currently + '</li>';
+            html += '<li>' + weather.wind.direction + ' ' + weather.wind.speed + ' ' + weather.units.speed + '</li></ul>';
+
+            $("#weather").html(html);
+        },
+        error: function (error) {
+            $("#weather").html('<p>' + error + '</p>');
+        }
+    });
+};
 

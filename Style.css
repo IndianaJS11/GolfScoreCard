@@ -6,12 +6,13 @@ body, html {
     background-image: url(woodWall.jpg);
     background-repeat: no-repeat;
     background-size: cover;
+    font-size: 10px;
 }
 
 #container {
     background-image: url("teeball.jpg");
     width: 100%;
-    height: auto;
+    /*height: auto;*/
     background-size: cover;
     position: relative;
     clear: both;
@@ -128,4 +129,35 @@ body, html {
     border: solid 4px;
     border-radius: 6px;
     padding: 10px;
+}
+
+
+
+
+/*weather api*/
+#weather {
+    width: 500px;
+    margin: 0px auto;
+    text-align: center;
+    text-transform: uppercase;
+    color: whitesmoke;
+
+}
+
+#weather ul {
+    margin: 0;
+    padding: 0;
+}
+
+#weather li {
+    background: #fff;
+    background: rgba(255,255,255,0.90);
+    color: #515151;
+    padding: 20px;
+    display: inline-block;
+    border-radius: 5px;
+}
+
+#weather .currently {
+    margin: 0 20px;
 }
