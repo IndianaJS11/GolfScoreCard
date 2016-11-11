@@ -9,7 +9,7 @@ var totPar = 0, totYards = 0;
 var tees;
 
 $(document).ready(function () {
-    $.post("http://golf-courses-api.herokuapp.com/courses", myLocation, function (data, status) {
+    $.post("https://golf-courses-api.herokuapp.com/courses", myLocation, function (data, status) {
         closeCourses = JSON.parse(data);
         console.log(closeCourses);
         for (var p in closeCourses.courses) {
@@ -24,7 +24,7 @@ function loadCourse(theid) {
 
 
 
-    $.get("http://golf-courses-api.herokuapp.com/courses/" + theid, function (data, status) {
+    $.get("https://golf-courses-api.herokuapp.com/courses/" + theid, function (data, status) {
         selectedCourse = JSON.parse(data).course;
         $("#courseTitle").html(selectedCourse.name);
         $(".modal-title").html(selectedCourse.name + " Information");
@@ -58,7 +58,7 @@ function begincard() {
     //initialize weather data
      var lati = selectedCourse.location.lat;
     var long = selectedCourse.location.lng;
-    var weatherURL = "api.openweathermap.org/data/2.5/weather?lat={"+ lati +"}&lon={"+ long +"}";
+    var weatherURL = "https://api.openweathermap.org/data/2.5/weather?lat={"+ lati +"}&lon={"+ long +"}";
     $.get("weatherURL", function (weatherStuff, status) {
         Weather = JSON.parse(weatherStuff);
     });
