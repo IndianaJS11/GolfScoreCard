@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src=" https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <script type="text/javascript" src="Script.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="Style.css">
+    <meta charset="UTF-8">
+    <title>Golf Card</title>
+</head>
+<body style="background-color: lightcyan">
+
+
+
+
+<!--&lt;!&ndash;modal&ndash;&gt;-->
+<!--&lt;!&ndash; Trigger/Open The Modal &ndash;&gt;-->
+<!--<button id="myBtn">Open Modal</button>-->
+
+<!--&lt;!&ndash; The Modal &ndash;&gt;-->
+<!--<div id="myModal" class="modal">-->
+
+    <!--&lt;!&ndash; Modal content &ndash;&gt;-->
+    <!--<div class="modal-content">-->
+        <!--<span class="close">×</span>-->
+        <!--<p>Some text in the Modal..</p>-->
+    <!--</div>-->
+
+<!--</div>-->
+<!--&lt;!&ndash;Close of modal&ndash;&gt;-->
+
+<div class="container" style="border: none; background-color: transparent; border-bottom: none">
+    <!-- Trigger the modal with a button -->
+    <button type="button" class="btn btn-info btn-lg" id="FinishButton" data-toggle="modal" data-target="#myTotalModal"
+            onclick="calculateTotals()">
+        Finish</button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myTotalModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Game Info</h3>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="totalTitle"></h4>
+                </div>
+                <div class="modal-body">
+                    <div id="FinishTotals">
+                        <div id="ScoresContainer">
+                            <div id="InnerScoresContainer"></div>
+                            <table id="ScoresTable" class="table table-striped" style="border: solid 2px;">
+                                <tr id="tableHead">
+                                    <th style="border: solid 2px; padding: 5px">Players</th>
+                                    <th style="border: solid 2px;  padding: 5px">Front 9</th>
+                                    <th style="border: solid 2px; padding: 5px">Back 9</th>
+                                    <th style="border: solid 2px; padding: 5px">Grand Total</th>
+                                    <th style="border: solid 2px; padding: 5px">Status</th>
+
+                                </tr>
+                            </table>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+<div id="modalbackground">
+    <div id="setupmodal">
+        <h3 style="text-align: center;">Golf Score Card</h3>
+        <div style="margin: auto 10px; position: relative;"><label style="color: black;">Golf Course:
+        </label><br><select
+            id="courseSelect" style=" border: solid 4px; border-radius: 4px; padding: 4px;"
+            onchange="loadCourse(this.value)"><option>~Select Course~</option></select></div>
+        <br>
+        <div style="position: relative; margin: auto 10px;"><label style="color: black;">Tee Type: </label><br><select
+                id="teeType"
+                                                                                                      style=" border: solid 4px;
+                                                                                                       border-radius:
+                                                                                                        4px; padding:
+                                                                                                         4px;
+                                                                                                         margin-bottom: 15px;"><option>~Select Tee Type~</option></select>
+        <br></div>
+        <div style="position: relative; margin: auto 10px;"><label style="color: black;">Number Of Players:</label>
+            <br>
+        <input id="playercount" type="text" placeholder="How many Players?">
+    </div><br>
+        <a href="javascript: begincard()" id="goButton" style="color: black; border: solid 4px; padding: 7px; border-radius: 8px;
+        margin: 0 auto; position: relative; font-size: 30px; font-family: sans-serif;
+        background-color: lightgray">GO</a>
+
+    </div>
+</div>
+
+<div class="container" style="border: none; background-color: transparent; border-bottom: none">
+    <!-- Trigger the modal with a button -->
+    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" id="InfoButton">Course
+        Info</button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body">
+                    <div id="CourseInfo"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+
+<div id="golfBanner">
+    <h3 style="text-align: center; color: black; padding: 10px; font-size: 50px;">Golf Score Card</h3>
+    <h3 id="courseTitle" style="text-align: center; margin: 0 auto; color: black; margin-bottom: 20px"></h3>
+</div>
+
+<div id="container">
+    <table class="table table-striped" id="mainTable">
+        <tr id="tableHeader">
+            <th id="playernum"></th>
+        </tr>
+
+    </table>
+    <div id="cardLeft">
+    </div>
+    <div id="cardRight">
+
+    </div>
+</div>
+
+</body>
+</html>
